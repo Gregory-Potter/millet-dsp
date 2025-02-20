@@ -8,17 +8,29 @@
 
 #include "../Generator/Generator-Noise.hpp"
 #include "../Envelope/Envelope-AR.hpp"
+#include "../Filter/Filter-Lowpass.hpp"
 
 namespace MilletDSP::Exciter {
 
 class NoisePulse {
 public:
-  NoisePulse(double sampleRate, double attackLength, double releaseLength)
+  NoisePulse(
+    double sampleRate,
+    double attackLength,
+    double releaseLength,
+    double cutoffFreq
+  )
   : noise()
   , env(
       sampleRate,
-      Envelope::Transition::Attack(sampleRate, Envelope::Transition::Attack::INTERP::LIN, attackLength),
-      Envelope::Transition::Release(sampleRate, Envelope::Transition::Release::INTERP::LIN, releaseLength)
+      Envelope::Transition::Attack::INTERP::LIN,
+      attackLength,
+      Envelope::Transition::Release::INTERP::LIN,
+      releaseLength
+    )
+  , filter(
+      sampleRate,
+      cutoffFreq
     )
   {}
 
@@ -33,6 +45,7 @@ public:
 private:
   Generator::Noise noise;
   Envelope::AR env;
+  Filter::Lowpass<2> filter;
 };
 
 } // MilletDSP::Exciter namespace

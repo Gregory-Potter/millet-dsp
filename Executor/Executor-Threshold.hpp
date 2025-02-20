@@ -15,33 +15,38 @@ namespace MilletDSP::Executor {
 class Threshold {
 public:
   Threshold(
-    uint sampleRate
+    uint sampleRate,
+    std::function<float()> func
   )
-  : buffer(Data::Buffer(sampleRate / 100)) // 10ms length
-  , isActive(false)
+  : buffer_(Data::Buffer(sampleRate / 100)) // 10ms length
+  , writeLoc_(0uz)
+  , isActive_(false)
+  , func_(func)
   {}
 
-  float handle(std::function<float()> func) {
-    if (isActive)
-    {
-      if (buffer.rms() < 0.001f)
-      {
-        buffer.fill(0.5f);
-        isActive = false;
-        return 0.0f;
+  float handle() {
+    if (isActive_) {
+      float outputSample = func_();
+      buffer_[writeLoc_] = outputSample;
+      writeLoc_ = ++writeLoc_ % buffer_.size();
+      if (buffer_.rms() < 0.001f) {
+        buffer_.fill(0.01f);
+        isActive_ = false;
       }
-      return func();
+      return outputSample;
     }
     return 0.0f;
   }
 
   void execute() {
-    isActive = true;
+    isActive_ = true;
   }
 
 private:
-  Data::Buffer buffer;
-  bool isActive;
+  Data::Buffer buffer_;
+  size_t writeLoc_;
+  bool isActive_;
+  std::function<float()> func_;
 }; // Threshold class
 
 } // MilletDSP::Executor namespace

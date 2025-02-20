@@ -14,7 +14,7 @@
 #include <array>
 #include <cmath>
 
-namespace DSP::Filter {
+namespace MilletDSP::Filter {
 
 template <size_t ORDER>
 class Lowpass {
@@ -161,6 +161,6 @@ private:
   std::array<double, COEFFSSIZE> fbCoeffs; // feedback coefficients
   std::array<double, COEFFSSIZE> ffCoeffs; // feedforward coefficients
   std::array<float, ORDER> delays;
-}; // end Lowpass class
+}; // Lowpass class
 
-} // end DSP::Filter namespace
+} // MilletDSP::Filter namespace

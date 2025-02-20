@@ -17,12 +17,14 @@ class ASR {
 public:
 	ASR(
 		double sampleRate,
-		Transition::Attack attack,
-		Transition::Release release
+		Transition::Attack::INTERP attackInterp,
+		double attackLength,
+		Transition::Release::INTERP releaseInterp,
+		double releaseLength
 	)
 	: sampleRate_(sampleRate)
-	, attack_(attack)
-	, release_(release)
+	, attack_(sampleRate, attackInterp, attackLength)
+	, release_(sampleRate, releaseInterp, releaseLength)
 	, stage_(STAGE::IDLE)
 	, index_(0uz)
 	{}

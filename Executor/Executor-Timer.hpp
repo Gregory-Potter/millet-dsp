@@ -8,18 +8,20 @@ class Timer {
 public:
 	Timer(
 		double sampleRate,
-		double seconds
+		double seconds,
+		std::function<float()> func
 	)
 	: length_(sampleRate * seconds)
 	, counter_(0uz)
+	, func_(func)
 	{}
 
-	float handle(std::function<float()> process) {
+	float handle() {
 		if (counter_ == length_) {
 			return 0.0f;
 		}
 		counter_++;
-		return process();
+		return func_();
 	}
 
 	void execute() {
@@ -27,6 +29,7 @@ public:
 	}
 	
 private:
+	std::function<float()> func_;
 	size_t length_;
 	size_t counter_;
 }; // Timer class

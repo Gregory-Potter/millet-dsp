@@ -51,10 +51,10 @@ void triggerOff(); // OPTIONAL
 
 ### [MilletDSP::Executor](./Executor/)
 
-Classes for cutting out large function chains when they would just be producing silence. This has been separated from envelopes to have the flexibility to use this functionality elsewhere; this comes up often when using resonators and other recursive delays. Use a lambda to wrap a function that has parameters for `handle`.
+Classes for cutting out large function chains when they would just be producing silence. This has been separated from envelopes to have the flexibility to use this functionality elsewhere; this comes up often when using resonators and other recursive delays. Use a lambda to pass in the function in the constructor.
 
 ```cpp
-float handle(std::function<float()> func);
+float handle();
 void execute();
 ```
 

@@ -18,7 +18,7 @@
 
 namespace MilletDSP::Delay {
 
-template<size_t order> requires (order > 0uz)
+template<size_t order> // requires (order > 0uz)
 class Lagrange {
 public:
 	Lagrange(
