@@ -12,7 +12,7 @@ public:
 		std::function<float()> func
 	)
 	: length_(sampleRate * seconds)
-	, counter_(0uz)
+	, counter_(0)
 	, func_(func)
 	{}
 

@@ -18,7 +18,7 @@
 
 namespace MilletDSP::Delay {
 
-template<size_t order> // requires (order > 0uz)
+template<size_t order> // requires (order > 0)
 class Lagrange {
 public:
 	Lagrange(
@@ -26,8 +26,8 @@ public:
 		double delay
 	)
 	: maxDelay_(maxDelay)
-	, buffer_(maxDelay_ + order + 1uz)
-	, weights_(order + 1uz)
+	, buffer_(maxDelay_ + order + 1)
+	, weights_(order + 1)
 	{
 		setDelay(delay);
 	}
@@ -40,7 +40,7 @@ public:
 		size_t readIndex = (writeIndex_ + (buffer_.size() - intDelay_)) % buffer_.size();
 		for (float weight : weights_) {
 			outputSample += buffer_[readIndex] * weight;
-			readIndex = (readIndex == 0uz) ? buffer_.size() - 1uz : readIndex - 1uz;
+			readIndex = (readIndex == 0) ? buffer_.size() - 1 : readIndex - 1;
 		}
 
 		writeIndex_ = ++writeIndex_ % buffer_.size();
@@ -52,14 +52,14 @@ public:
 		return delay_;
 	}
 
-	void setDelay(float length) {
-		delay_ = std::clamp(length, weights_.size() / 2.0, static_cast<double>(maxDelay_));
+	void setDelay(double length) {
+		delay_ = std::clamp(length, static_cast<double>(weights_.size() / 2.0), static_cast<double>(maxDelay_));
 		intDelay_ = std::trunc(delay_);
 		double fracDelay = delay_ - intDelay_;
 		
-		for (size_t weightIndex=0uz; weightIndex<weights_.size(); weightIndex++) {
+		for (size_t weightIndex=0; weightIndex<weights_.size(); weightIndex++) {
 			weights_[weightIndex] = 1.0f;
-			for (size_t calcIndex=0uz; calcIndex<weights_.size(); calcIndex++) {
+			for (size_t calcIndex=0; calcIndex<weights_.size(); calcIndex++) {
 				if (weightIndex == calcIndex) break;
 				weights_[weightIndex] *= (fracDelay - calcIndex) / (weightIndex - calcIndex);
 			}
@@ -74,7 +74,7 @@ private:
 	Data::Buffer buffer_;
 	Data::Buffer weights_;
 
-	size_t writeIndex_ = 0uz;
+	size_t writeIndex_ = 0;
 }; // Lagrange class
 
 } // MilletDSP::Delay namespace

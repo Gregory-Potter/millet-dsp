@@ -89,14 +89,14 @@ public:
 			break;
 		}
     case Window::Hann: {
-      for (size_t i = 0uz; i < size_; i++) {
+      for (size_t i = 0; i < size_; i++) {
         data_[i] *= 0.5 * (1.0 - cos(2.0 * M_PI * i / (size_ - 1)));
       }
       break;
     }
     case Window::Hamming: {
       constexpr float a = 25.0 / 46.0;
-      for (size_t i = 0uz; i < size_; i++) {
+      for (size_t i = 0; i < size_; i++) {
         data_[i] *= a - ((1.0 - a) * cos(2.0 * M_PI * i / (size_ - 1)));
       }
       break;
@@ -105,7 +105,7 @@ public:
       constexpr float a0 = 7938.0 / 18608.0;
       constexpr float a1 = 9240.0 / 18608.0;
       constexpr float a2 = 1430.0 / 18608.0;
-      for (size_t i = 0uz; i < size_; i++) {
+      for (size_t i = 0; i < size_; i++) {
         data_[i] *= a0 - (a1 * cos(2.0 * M_PI * i / (size_ - 1))) + (a2 * cos(4.0 * M_PI * i / (size_ - 1)));
       }
       break;

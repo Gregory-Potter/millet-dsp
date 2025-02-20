@@ -17,10 +17,11 @@ public:
 	Convolution(Data::Buffer inCoeffs)
 	: coeffs(inCoeffs)
 	, buffer(coeffs.size())
-	, writeIndex(0uz)
+	, writeIndex(0)
 	{}
 
 	float process(float inputSample) {
+		const size_t size = coeffs.size();
 		float outputSample = 0.0f;
 		size_t readIndex = writeIndex;
 
@@ -29,16 +30,16 @@ public:
 		for (const float coeff : coeffs) {
 			outputSample += buffer[readIndex] * coeff;
 
-			if (readIndex == 0) readIndex = coeffs.size() - 1uz;
+			if (readIndex == 0) readIndex = size - 1;
 			else --readIndex;
 		}
 
-		if (++writeIndex == buffer.size()) writeIndex = 0uz;
+		if (++writeIndex == size) writeIndex = 0;
 
 		return outputSample;
 	}
 
-	size_t size() {
+	size_t size() const {
 		return coeffs.size();
 	}
 	

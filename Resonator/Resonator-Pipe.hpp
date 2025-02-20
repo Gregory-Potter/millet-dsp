@@ -21,18 +21,18 @@ public:
 		double sampleRate = 44100,
 		float frequency = 110.0f
 	)
-	: recur(0.999f)
-	{
-		const size_t firSize = static_cast<size_t>(sampleRate / 1260);
-	  Data::Buffer firCoeffs = Data::Buffer(firSize);
-		firCoeffs.fill(1.0f/firSize);
-		convolution = Filter::Convolution(firCoeffs);
-
-		// subtract 1.0f to account for the one sample delay of the recursion,
-		// and subtract half the FIR size to account for the group delay of the linear phase FIR filter.
-		const float delayLength = (static_cast<float>(sampleRate)/frequency) - 1.0f - (static_cast<float>(firSize) / 2.0f);
-		delay = Delay::Lagrange<3>(std::ceil(delayLength), delayLength);
-	}
+	: convolution([&] {
+			const size_t firSize = sampleRate / 1260;
+			Data::Buffer firCoeffs = Data::Buffer(firSize);
+			firCoeffs.fill(1.0f/firSize);
+			return firCoeffs;
+		}())
+	, recur(0.99f)
+	, delay([&] {
+			const double length = (static_cast<double>(sampleRate)/frequency) - 1.0 - (static_cast<double>(convolution.size()) / 2.0);
+			return Delay::Lagrange<3>(std::ceil(length), length);
+		}())
+	{}
 
 	float process(float inputSample) {
 		return recur.process(delay.process(convolution.process(inputSample + recur.feedback())));

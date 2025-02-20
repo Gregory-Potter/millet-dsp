@@ -15,13 +15,9 @@
 namespace MilletDSP::Delay {
 
 class Recursion {
-private:
-	float feedbackAmount;
-	float sample;
-	
 public:
-	Recursion(float feedback = 0.0f)
-	: feedbackAmount(feedback)
+	Recursion(float feedback)
+	: feedbackAttenutation(feedback)
 	, sample(0.0f)
 	{}
 	
@@ -31,13 +27,13 @@ public:
 		return outputSample;
 	}
 	
-	constexpr float getDelay() const {
-	  return 1.0f;
+	float feedback() const {
+		return sample * feedbackAttenutation;
 	}
 	
-	float feedback() const {
-		return sample;
-	}
+private:
+	float feedbackAttenutation;
+	float sample;
 }; // Recursion class
 
 } // MilletDSP::Delay namespace

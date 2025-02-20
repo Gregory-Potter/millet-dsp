@@ -26,7 +26,7 @@ public:
 	, attack_(sampleRate, attackInterp, attackLength)
 	, release_(sampleRate, releaseInterp, releaseLength)
 	, stage_(STAGE::IDLE)
-	, index_(0uz)
+	, index_(0)
 	{}
 
 	float attenuate(float inputSample) {
@@ -80,7 +80,7 @@ private:
 	
 	void setStage(STAGE stg) {
 		stage_ = stg;
-		index_ = 0uz;
+		index_ = 0;
 	}
 }; // AR class
 

@@ -157,7 +157,7 @@ private:
   double sampleRate;
   double cutoff;
 
-  const std::array<double, ORDER> normPoles;
+  std::array<double, ORDER> normPoles;
   std::array<double, COEFFSSIZE> fbCoeffs; // feedback coefficients
   std::array<double, COEFFSSIZE> ffCoeffs; // feedforward coefficients
   std::array<float, ORDER> delays;
