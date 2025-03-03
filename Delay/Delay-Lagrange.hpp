@@ -12,7 +12,9 @@
 
 #pragma once
 
+#include <iostream>
 #include <algorithm>
+#include <iomanip>
 #include <cmath>
 #include "../Data/Data-Buffer.hpp"
 
@@ -36,7 +38,7 @@ public:
 		buffer_[writeIndex_] = inputSample;
 
 		float outputSample = 0.0f;
-		
+
 		size_t readIndex = (writeIndex_ + (buffer_.size() - intDelay_)) % buffer_.size();
 		for (float weight : weights_) {
 			outputSample += buffer_[readIndex] * weight;
@@ -47,7 +49,7 @@ public:
 
 		return outputSample;
 	}
-	
+
 	float getDelay() const {
 		return delay_;
 	}
@@ -55,17 +57,23 @@ public:
 	void setDelay(double length) {
 		delay_ = std::clamp(length, static_cast<double>(weights_.size() / 2.0), static_cast<double>(maxDelay_));
 		intDelay_ = std::trunc(delay_);
-		double fracDelay = delay_ - intDelay_;
-		
-		for (size_t weightIndex=0; weightIndex<weights_.size(); weightIndex++) {
-			weights_[weightIndex] = 1.0f;
-			for (size_t calcIndex=0; calcIndex<weights_.size(); calcIndex++) {
-				if (weightIndex == calcIndex) break;
-				weights_[weightIndex] *= (fracDelay - calcIndex) / (weightIndex - calcIndex);
+
+		const double fracDelay = delay_ - intDelay_;
+		for (double i=0.0; i<=order; i++) {
+		  double weight = 1.0f;
+		  for (double j=0.0; j<=order; j++) {
+				if (i != j) weight *= (fracDelay - j) / (i - j);
 			}
+			weights_[i] = weight;
 		}
+
+		std::cout << "weights: ";
+		for (float weight : weights_) {
+		  std::cout << std::setprecision(10) << weight << ", ";
+		}
+		std::cout << std::endl;
 	}
-	
+
 private:
 	size_t maxDelay_;
 	double delay_;
