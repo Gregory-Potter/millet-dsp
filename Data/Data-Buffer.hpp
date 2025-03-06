@@ -12,6 +12,7 @@
 
 #include <initializer_list>
 #include <algorithm>
+#include <cmath>
 #include <stdexcept>
 
 namespace MilletDSP::Data {
@@ -38,11 +39,38 @@ public:
 		delete[] data_;
 	}
 	
-	Buffer(const Buffer& other) = default;
-	Buffer& operator=(const Buffer& other) = default;
+	// Copy
+	Buffer(const Buffer& other)
+	: size_(other.size_)
+	{
+	  data_ = new float[size_];
+		std::copy(other.data_, other.data_ + other.size_, data_);
+	}
+	Buffer& operator=(const Buffer& other) {
+	  size_ = other.size_;
+	  data_ = new float[size_];
+		std::copy(other.data_, other.data_ + other.size_, data_);
+		return *this;
+	}
 	
-	Buffer(Buffer&& other) = default;
-	Buffer& operator=(Buffer&& other) = default;
+	// Move
+	Buffer(Buffer&& other)
+	: data_(other.data_)
+	, size_(other.size_)
+	{
+	  other.data_ = nullptr;
+		other.size_ = 0;
+	}
+	Buffer& operator=(Buffer&& other) {
+	  if (this != &other) {
+			delete[] data_;
+			data_ = other.data_;
+			size_ = other.size_;
+			other.data_ = nullptr;
+			other.size_ = 0;
+		}
+		return *this;
+	}
 	
 	const float& operator[](size_t index) const {
 		return data_[index];

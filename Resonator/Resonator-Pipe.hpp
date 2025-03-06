@@ -27,7 +27,7 @@ public:
 			firCoeffs.fill(1.0f/firSize);
 			return firCoeffs;
 		}())
-	, recur(0.99f)
+	, recur(0.999f)
 	, delay([&] {
 			const double length = (static_cast<double>(sampleRate)/frequency) - 1.0 - (static_cast<double>(convolution.size()) / 2.0);
 			return Delay::Lagrange<3>(std::ceil(length), length);
