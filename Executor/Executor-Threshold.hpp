@@ -8,7 +8,7 @@
 
 #include <functional>
 #include <cmath>
-#include "../Data/Data-Buffer.hpp"
+#include "../Data/Buffer.h"
 
 namespace MilletDSP::Executor {
 
