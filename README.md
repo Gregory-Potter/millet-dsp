@@ -6,7 +6,7 @@
 
 # MilletDSP
 
-A C++ header library for digital signal processing — intended for handling audio processing within AudioUnit/VST plugins.
+A C++ library for digital signal processing — intended for handling audio processing within AudioUnit/VST plugins.
 
 ## Repository Organization
 
@@ -17,7 +17,7 @@ but I have provided some interface-like quick-references below.
 
 ### [MilletDSP::Data](./Data/)
 
-Data container classes, the most important and prevelent of which is [`Buffer`](./Data/Data-Buffer.hpp), which is a collection class for samples that is used heavily throughout the library.
+Data container classes, the most important and prevelent of which is [`Buffer`](./Data/Buffer.h), which is a collection class for samples that is used heavily throughout the library.
 
 ### [MilletDSP::Delay](./Delay/)
 
