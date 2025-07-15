@@ -13,7 +13,7 @@
 #pragma once
 
 #include <cmath>
-#include "./Data-Buffer.hpp"
+#include "./Buffer.h"
 
 namespace MilletDSP::Data {
 
