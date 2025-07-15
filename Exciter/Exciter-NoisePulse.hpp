@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "../Generator/Generator-Noise.hpp"
+#include "../Generator/Noise.h"
 #include "../Envelope/Envelope-AR.hpp"
 #include "../Filter/Filter-Lowpass.hpp"
 
