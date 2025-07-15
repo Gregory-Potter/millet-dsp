@@ -8,7 +8,7 @@
 
 #include <memory>
 #include <cmath>
-#include "../Data/Data-Buffer.hpp"
+#include "../Data/Buffer.h"
 #include "../Filter/Filter-Convolution.hpp"
 #include "../Delay/Delay-Recursion.hpp"
 #include "../Delay/Delay-Lagrange.hpp"
