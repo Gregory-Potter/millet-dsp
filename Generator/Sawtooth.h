@@ -10,9 +10,9 @@ namespace MilletDSP::Generator {
 
 class Sawtooth {
 public:
-  float generate();
+	float generate();
 private:
-  float sample;
+	float sample;
 }; // Sawtooth class
 
 } // MilletDSP::Generator namespace
