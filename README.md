@@ -73,6 +73,7 @@ Classes for creating samples, i.e. audio signal generators like noise, sine wave
 ```cpp
 float generate();
 void reset(); // OPTIONAL
+void setFrequency(); // OPTIONAL
 ```
 
 ### [MilletDSP::Resonator](./Resonator/)
