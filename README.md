@@ -84,6 +84,6 @@ Classes that process incoming samples through filtered feedback loops.
 float process(float inputSample);
 ```
 
-### [MilletDSP::Utility](./Utility/)
+### [MilletDSP::Other](./Other/)
 
-Various utilities that don't fit anywhere else.
+Various utilities that don't fit in another category.
