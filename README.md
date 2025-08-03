@@ -60,7 +60,7 @@ void execute();
 
 ### [MilletDSP::Filter](./Filter/)
 
-Classes for filtering a signal, like lowpass and highpass IIR filters, or convolution.
+Classes for filtering a signal, like lowpass and highpass IIR filters, or linear phase convolution.
 
 ```cpp
 float process(float inputSample);
@@ -86,4 +86,4 @@ float process(float inputSample);
 
 ### [MilletDSP::Other](./Other/)
 
-Various utilities that don't fit in another category.
+Various utilities that don't fit neatly in another category.
