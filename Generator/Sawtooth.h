@@ -14,7 +14,8 @@ public:
 	Sawtooth(float frequency, float sampleRate);
 	
 	float generate();
-	void reset();
+	void setFrequency();
+	void zeroPhase();
 	
 private:
 	float sample;
