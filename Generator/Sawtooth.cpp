@@ -19,4 +19,12 @@ float Sawtooth::generate() {
 	return sample;
 }
 
+void Sawtooth::setFrequency(float frequency, float sampleRate) {
+	step = 2 / (sampleRate / frequency);
+}
+
+void Sawtooth::zeroPhase() {
+	sample = 0;
+}
+
 } // MilletDSP::Generator namespace
