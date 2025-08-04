@@ -10,7 +10,7 @@
 #include <algorithm>
 #include "../Data/Buffer.h"
 
-namespace MilletDSP::Filter {
+namespace MilletDSP::Other {
 
 class Convolution {
 public:
@@ -49,4 +49,4 @@ private:
 	size_t writeIndex;
 }; // Convolution class
 
-} // MilletDSP::Filter namespace
+} // MilletDSP::Other namespace
