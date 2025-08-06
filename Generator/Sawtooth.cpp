@@ -8,23 +8,24 @@
 
 namespace MilletDSP::Generator {
 
-Sawtooth::Sawtooth(float frequency, float sampleRate) {
-	sample = 0;
-	step = 2 / (sampleRate / frequency);
+Sawtooth::Sawtooth(double sampleRate, float frequency) {
+	sampleRate_ = sampleRate;
+  sample_ = 0;
+	step_ = 2 / (sampleRate / frequency);
 }
 
 float Sawtooth::generate() {
-	sample = sample + step;
-	if (sample > 1) sample - 2;
-	return sample;
+	sample_ = sample_ + step_;
+	if (sample_ > 1) sample_ = sample_ - 2;
+	return sample_;
 }
 
-void Sawtooth::setFrequency(float frequency, float sampleRate) {
-	step = 2 / (sampleRate / frequency);
+void Sawtooth::setFrequency(float frequency) {
+	step_ = 2 / (sampleRate_ / frequency);
 }
 
 void Sawtooth::zeroPhase() {
-	sample = 0;
+	sample_ = 0;
 }
 
 } // MilletDSP::Generator namespace

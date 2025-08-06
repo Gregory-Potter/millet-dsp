@@ -40,7 +40,7 @@ Buffer::Buffer(const Buffer& other)
   data_ = new float[size_];
   std::copy(other.data_, other.data_ + other.size_, data_);
 }
-Buffer::Buffer& operator=(const Buffer& other) {
+Buffer& Buffer::operator=(const Buffer& other) {
   size_ = other.size_;
   data_ = new float[size_];
   std::copy(other.data_, other.data_ + other.size_, data_);
@@ -55,7 +55,7 @@ Buffer::Buffer(Buffer&& other)
   other.data_ = nullptr;
   other.size_ = 0;
 }
-Buffer::Buffer& operator=(Buffer&& other) {
+Buffer& Buffer::operator=(Buffer&& other) {
   if (this != &other) {
     delete[] data_;
     data_ = other.data_;

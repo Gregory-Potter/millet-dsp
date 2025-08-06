@@ -21,6 +21,7 @@ public:
 	Buffer(std::initializer_list<float> list);
 	~Buffer(); // Destructor
 	Buffer(const Buffer& other); // Copy constructor
+	Buffer& operator=(const Buffer& other); // Copy assignment operator
 	Buffer(Buffer&& other); // Move constructor
 	Buffer& operator=(Buffer&& other); // Move assignment operator
 	

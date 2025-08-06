@@ -9,13 +9,21 @@
 
 namespace MilletDSP::Generator {
 
-Sine::Sine(float frequency, float sampleRate) {
-	sample = 0;
+Sine::Sine(double sampleRate, float frequency) {
+	sampleRate = sampleRate;
+  sample = 0;
 }
 
 float Sine::generate() {
 	
 	return sample;
+}
+
+void Sine::setFrequency(float frequency) {
+  
+}
+void Sine::zeroPhase() {
+  
 }
 
 } // MilletDSP::Generator namespace
