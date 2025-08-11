@@ -10,8 +10,8 @@
 #include <cmath>
 #include "../Data/Buffer.h"
 #include "../Other/Convolution.hpp"
-#include "../Delay/Delay-Recursion.hpp"
-#include "../Delay/Delay-Lagrange.hpp"
+#include "../Delay/Recursion.h"
+#include "../Delay/Lagrange.hpp"
 
 namespace MilletDSP::Resonator {
 
@@ -39,7 +39,7 @@ public:
 	}
 
 private:
-  Filter::Convolution convolution;
+  Other::Convolution convolution;
 	Delay::Recursion recur;
 	Delay::Lagrange<3> delay;
 }; // Pipe class
