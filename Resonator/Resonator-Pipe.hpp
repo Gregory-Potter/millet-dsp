@@ -29,9 +29,9 @@ public:
 	}())
 	, recur(0.999f)
 	, delay([&] {
-			const double length = (sampleRate/frequency) - 1.0 - (static_cast<double>(convolution.size()) / 2.0);
-			return Delay::Lagrange<3>(std::ceil(length), length);
-		}())
+		const double length = (sampleRate/frequency) - 1.0 - (static_cast<double>(convolution.size()) / 2.0);
+		return Delay::Lagrange<3>(std::ceil(length), length);
+	}())
 	{}
 
 	double process(double inputSample) {
