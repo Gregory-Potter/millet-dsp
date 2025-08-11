@@ -17,13 +17,13 @@ namespace MilletDSP::Delay {
 class Recursion {
 public:
   Recursion() = delete;
-	Recursion(float feedback); // feedback should be in range (0, 1)
-	float process(float inputSample);
-	float feedback() const;
+	Recursion(double feedback); // feedback should be in range (0, 1)
+	double process(double inputSample);
+	double feedback() const;
 	
 private:
-	float feedbackAttenutation;
-	float sample;
+	double feedbackAttenutation;
+	double sample;
 }; // Recursion class
 
 } // MilletDSP::Delay namespace

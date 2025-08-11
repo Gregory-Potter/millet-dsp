@@ -19,7 +19,7 @@ class Pipe {
 public:
 	Pipe(
 		double sampleRate = 44100,
-		float frequency = 110.0f
+		double frequency = 110.0f
 	)
 	: convolution([&] {
 			const size_t firSize = sampleRate / 1260;
@@ -34,7 +34,7 @@ public:
 		}())
 	{}
 
-	float process(float inputSample) {
+	double process(double inputSample) {
 		return recur.process(delay.process(convolution.process(inputSample + recur.feedback())));
 	}
 

@@ -20,14 +20,14 @@ public:
 	, writeIndex(0)
 	{}
 
-	float process(float inputSample) {
+	double process(double inputSample) {
 		const size_t size = coeffs.size();
-		float outputSample = 0.0f;
+		double outputSample = 0.0f;
 		size_t readIndex = writeIndex;
 
 		buffer[writeIndex] = inputSample;
 
-		for (const float coeff : coeffs) {
+		for (const double coeff : coeffs) {
 			outputSample += buffer[readIndex] * coeff;
 
 			if (readIndex == 0) readIndex = size - 1;

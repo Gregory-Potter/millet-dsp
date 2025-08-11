@@ -27,7 +27,7 @@ double Noise::generate() {
   state3 ^= t;
   state4 = std::rotl(state4, 45);
 
-  return ((result >> 11) * (2.0 / (1ULL << 53))) - 1.0;
+  return static_cast<double>(((result >> 11) * (2.0 / (1ULL << 53))) - 1.0);
 }
 
 } // MilletDSP::Generator namespace

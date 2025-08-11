@@ -14,18 +14,18 @@
 
 namespace MilletDSP::Delay {
 
-Recursion::Recursion(float feedback)
+Recursion::Recursion(double feedback)
 : feedbackAttenutation(feedback)
-, sample(0.0f)
+, sample(0.0)
 {}
 
-float Recursion::process(float inputSample) {
-  float outputSample = sample;
+double Recursion::process(double inputSample) {
+  double outputSample = sample;
   sample = inputSample;
   return outputSample;
 }
 
-float Recursion::feedback() const {
+double Recursion::feedback() const {
   return sample * feedbackAttenutation;
 }
 

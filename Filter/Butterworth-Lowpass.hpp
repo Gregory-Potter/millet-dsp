@@ -21,7 +21,7 @@ class Lowpass {
 public:
   Lowpass(
     double inSampleRate,
-    float inCutoff
+    double inCutoff
   )
   : sampleRate(inSampleRate)
   , cutoff(inCutoff)
@@ -129,7 +129,7 @@ public:
     }
   }
 
-  float process(float inputSample) {
+  double process(double inputSample) {
     // handle feedback
     double feedbackResult = inputSample;
     for (size_t i = 1; i < COEFFSSIZE; i++) {
@@ -148,7 +148,7 @@ public:
       delays[i] = delays[i - 1];
     }
 
-    return (float)outputSample;
+    return (double)outputSample;
   }
 
 private:
@@ -160,7 +160,7 @@ private:
   std::array<double, ORDER> normPoles;
   std::array<double, COEFFSSIZE> fbCoeffs; // feedback coefficients
   std::array<double, COEFFSSIZE> ffCoeffs; // feedforward coefficients
-  std::array<float, ORDER> delays;
+  std::array<double, ORDER> delays;
 }; // Lowpass class
 
 } // MilletDSP::Filter namespace

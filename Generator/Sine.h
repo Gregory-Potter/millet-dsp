@@ -11,14 +11,14 @@ namespace MilletDSP::Generator {
 class Sine {
 public:
 	Sine() = delete;
-	Sine(double sampleRate, float frequency);
+	Sine(double sampleRate, double frequency);
 	
-	float generate();
-	void setFrequency(float frequency);
+	double generate();
+	void setFrequency(double frequency);
 	void zeroPhase();
 	
 private:
-	float sample;
+	double sample;
 }; // Sine class
 
 } // MilletDSP::Generator namespace

@@ -29,25 +29,25 @@ public:
 	, index_(0)
 	{}
 
-	float attenuate(float inputSample) {
+	double attenuate(double inputSample) {
 		switch(stage_) {
 			case STAGE::IDLE: {
 				return 0.0f;
 			}
 			case STAGE::ATTACK: {
-				const float outputSample = inputSample * attack_.getAttenuation(index_++) * scaler_;
+				const double outputSample = inputSample * attack_.getAttenuation(index_++) * scaler_;
 				if (index_ == attack_.size) setStage(STAGE::RELEASE);
 				return outputSample;
 			}
 			case STAGE::RELEASE: {
-				const float outputSample = inputSample * release_.getAttenuation(index_++) * scaler_;
+				const double outputSample = inputSample * release_.getAttenuation(index_++) * scaler_;
 				if (index_ == release_.size) setStage(STAGE::IDLE);
 				return outputSample;
 			}
 		}
 	}
 
-	void triggerOn(float velocity) {
+	void triggerOn(double velocity) {
 		scaler_ = velocity;
 		setStage(STAGE::ATTACK);
 	}
@@ -74,7 +74,7 @@ private:
 	double sampleRate_;
 	Transition::Attack attack_;
 	Transition::Release release_;
-	float scaler_;
+	double scaler_;
 	STAGE stage_;
 	size_t index_;
 	

@@ -8,7 +8,7 @@
 
 #include "../Generator/Noise.h"
 #include "../Envelope/Envelope-AR.hpp"
-#include "../Filter/Filter-Lowpass.hpp"
+#include "../Filter/Butterworth-Lowpass.hpp"
 
 namespace MilletDSP::Exciter {
 
@@ -34,11 +34,11 @@ public:
     )
   {}
 
-  float excite() {
+  double excite() {
     return env.attenuate(noise.generate());
   }
 
-  void triggerOn(float velocity) {
+  void triggerOn(double velocity) {
     env.triggerOn(velocity);
   }
 

@@ -34,13 +34,13 @@ public:
 		setDelay(delay);
 	}
 
-	float process(float inputSample) {
+	double process(double inputSample) {
 		buffer_[writeIndex_] = inputSample;
 
-		float outputSample = 0.0f;
+		double outputSample = 0.0f;
 
 		size_t readIndex = (writeIndex_ + (buffer_.size() - intDelay_)) % buffer_.size();
-		for (float weight : weights_) {
+		for (double weight : weights_) {
 			outputSample += buffer_[readIndex] * weight;
 			readIndex = (readIndex == 0) ? buffer_.size() - 1 : readIndex - 1;
 		}
@@ -50,7 +50,7 @@ public:
 		return outputSample;
 	}
 
-	float getDelay() const {
+	double getDelay() const {
 		return delay_;
 	}
 
@@ -68,7 +68,7 @@ public:
 		}
 
 		std::cout << "weights: ";
-		for (float weight : weights_) {
+		for (double weight : weights_) {
 		  std::cout << std::setprecision(10) << weight << ", ";
 		}
 		std::cout << std::endl;

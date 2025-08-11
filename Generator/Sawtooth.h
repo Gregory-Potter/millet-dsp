@@ -11,16 +11,16 @@ namespace MilletDSP::Generator {
 class Sawtooth {
 public:
 	Sawtooth() = delete;
-	Sawtooth(double sampleRate, float frequency);
+	Sawtooth(double sampleRate, double frequency);
 	
-	float generate();
-	void setFrequency(float frequency);
+	double generate();
+	void setFrequency(double frequency);
 	void zeroPhase();
 	
 private:
-  float sample_;
+  double sample_;
   double sampleRate_;
-	float step_;
+	double step_;
 }; // Sawtooth class
 
 } // MilletDSP::Generator namespace

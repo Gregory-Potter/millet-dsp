@@ -15,14 +15,14 @@ public:
 	Timer(
 		double sampleRate,
 		double seconds,
-		std::function<float()> func
+		std::function<double()> func
 	)
 	: length_(sampleRate * seconds)
 	, counter_(0)
 	, func_(func)
 	{}
 
-	float handle() {
+	double handle() {
 		if (counter_ == length_) {
 			return 0.0f;
 		}
@@ -35,7 +35,7 @@ public:
 	}
 	
 private:
-	std::function<float()> func_;
+	std::function<double()> func_;
 	size_t length_;
 	size_t counter_;
 }; // Timer class
