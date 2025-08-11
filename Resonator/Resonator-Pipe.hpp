@@ -22,11 +22,11 @@ public:
 		double frequency = 110.0f
 	)
 	: convolution([&] {
-			const size_t firSize = sampleRate / 1260;
-			Data::Buffer firCoeffs = Data::Buffer(firSize);
-			firCoeffs.fill(1.0f/firSize);
-			return firCoeffs;
-		}())
+		const size_t firSize = sampleRate / 1260;
+		Data::Buffer firCoeffs = Data::Buffer(firSize);
+		firCoeffs.fill(1.0f/firSize);
+		return firCoeffs;
+	}())
 	, recur(0.999f)
 	, delay([&] {
 			const double length = (sampleRate/frequency) - 1.0 - (static_cast<double>(convolution.size()) / 2.0);
