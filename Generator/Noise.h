@@ -12,13 +12,13 @@ namespace MilletDSP::Generator {
 
 class Noise {
 public:
-	float generate();
+	double generate();
 	
 private:
-	uint32_t state1 = 1234;
-	uint32_t state2 = 5678;
-	uint32_t state3 = 9012;
-	uint32_t state4 = 3456;
+	uint64_t state1 = 1234;
+	uint64_t state2 = 5678;
+	uint64_t state3 = 9012;
+	uint64_t state4 = 3456;
 }; // Noise class
 
 } // MilletDSP::Generator namespace

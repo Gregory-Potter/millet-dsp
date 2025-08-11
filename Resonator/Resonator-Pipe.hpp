@@ -9,7 +9,7 @@
 #include <memory>
 #include <cmath>
 #include "../Data/Buffer.h"
-#include "../Filter/Filter-Convolution.hpp"
+#include "../Other/Convolution.hpp"
 #include "../Delay/Delay-Recursion.hpp"
 #include "../Delay/Delay-Lagrange.hpp"
 

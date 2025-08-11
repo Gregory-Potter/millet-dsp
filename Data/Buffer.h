@@ -18,22 +18,22 @@ class Buffer {
 public:
 	Buffer() = delete;
 	explicit Buffer(size_t size);
-	Buffer(std::initializer_list<float> list);
+	Buffer(std::initializer_list<double> list);
 	~Buffer(); // Destructor
 	Buffer(const Buffer& other); // Copy constructor
 	Buffer& operator=(const Buffer& other); // Copy assignment operator
 	Buffer(Buffer&& other); // Move constructor
 	Buffer& operator=(Buffer&& other); // Move assignment operator
 	
-	const float& operator[](size_t index) const;
-	float& operator[](size_t index);
+	const double& operator[](size_t index) const;
+	double& operator[](size_t index);
 	
 	size_t size() const noexcept;
-	float* begin();
-	float* end();
+	double* begin();
+	double* end();
 	
-	void fill(float value);
-	float rms();
+	void fill(double value);
+	double rms();
 	
 	enum class Window {
 		Boxcar,
@@ -46,7 +46,7 @@ public:
 	
 private:
 	size_t size_;
-	float* data_;
+	double* data_;
 }; // Buffer class
 
 } // MilletDSP::Data namespace

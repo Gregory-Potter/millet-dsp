@@ -16,20 +16,10 @@ namespace MilletDSP::Delay {
 
 class Recursion {
 public:
-	Recursion(float feedback)
-	: feedbackAttenutation(feedback)
-	, sample(0.0f)
-	{}
-	
-	float process(float inputSample) {
-		float outputSample = sample;
-		sample = inputSample;
-		return outputSample;
-	}
-	
-	float feedback() const {
-		return sample * feedbackAttenutation;
-	}
+  Recursion() = delete;
+	Recursion(float feedback); // feedback should be in range (0, 1)
+	float process(float inputSample);
+	float feedback() const;
 	
 private:
 	float feedbackAttenutation;

@@ -17,14 +17,14 @@ namespace MilletDSP::Data {
 	
 Buffer::Buffer(size_t size)
 : size_(size)
-, data_(new float[size_])
+, data_(new double[size_])
 {
   std::fill(data_, data_ + size_, 0.0f);
 }
 
-Buffer::Buffer(std::initializer_list<float> list)
+Buffer::Buffer(std::initializer_list<double> list)
 : size_(list.size())
-, data_(new float[size_])
+, data_(new double[size_])
 {
   std::copy(list.begin(), list.end(), data_);
 }
@@ -37,12 +37,12 @@ Buffer::~Buffer() {
 Buffer::Buffer(const Buffer& other)
 : size_(other.size_)
 {
-  data_ = new float[size_];
+  data_ = new double[size_];
   std::copy(other.data_, other.data_ + other.size_, data_);
 }
 Buffer& Buffer::operator=(const Buffer& other) {
   size_ = other.size_;
-  data_ = new float[size_];
+  data_ = new double[size_];
   std::copy(other.data_, other.data_ + other.size_, data_);
   return *this;
 }
@@ -66,11 +66,11 @@ Buffer& Buffer::operator=(Buffer&& other) {
   return *this;
 }
 
-const float& Buffer::operator[](size_t index) const {
+const double& Buffer::operator[](size_t index) const {
   return data_[index];
 }
 
-float& Buffer::operator[](size_t index) {
+double& Buffer::operator[](size_t index) {
   return data_[index];
 }
 
@@ -78,21 +78,21 @@ size_t Buffer::size() const noexcept {
   return size_;
 }
 
-float* Buffer::begin() {
+double* Buffer::begin() {
   return data_;
 }
 
-float* Buffer::end() {
+double* Buffer::end() {
   return data_ + size_;
 }
 
-void Buffer::fill(float value) {
+void Buffer::fill(double value) {
   std::fill(data_, data_ + size_, value);
 }
 
-float Buffer::rms() {
-  float sumOfSquares = 0.0f;
-  for (float& sample : *this) {
+double Buffer::rms() {
+  double sumOfSquares = 0.0f;
+  for (double& sample : *this) {
     sumOfSquares += sample * sample;
   }
   return std::sqrt(sumOfSquares / size_);
@@ -110,16 +110,16 @@ void Buffer::window(Window w) {
       break;
     }
     case Window::Hamming: {
-      constexpr float a = 25.0 / 46.0;
+      constexpr double a = 25.0 / 46.0;
       for (size_t i = 0; i < size_; i++) {
         data_[i] *= a - ((1.0 - a) * cos(2.0 * M_PI * i / (size_ - 1)));
       }
       break;
     }
     case Window::Blackman: {
-      constexpr float a0 = 7938.0 / 18608.0;
-      constexpr float a1 = 9240.0 / 18608.0;
-      constexpr float a2 = 1430.0 / 18608.0;
+      constexpr double a0 = 7938.0 / 18608.0;
+      constexpr double a1 = 9240.0 / 18608.0;
+      constexpr double a2 = 1430.0 / 18608.0;
       for (size_t i = 0; i < size_; i++) {
         data_[i] *= a0 - (a1 * cos(2.0 * M_PI * i / (size_ - 1))) + (a2 * cos(4.0 * M_PI * i / (size_ - 1)));
       }

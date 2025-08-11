@@ -5,29 +5,29 @@
  */
 
 /*
- * Based on xoshiro128+ pseudorandom number generator.
+ * Based on xoshiro256++ pseudorandom number generator.
  * https://en.m.wikipedia.org/wiki/Xorshift#xoshiro
  * generate() outputs random float values from -1 to 1.
  */
 
 #include "Noise.h"
+#include <bit>
 
 namespace MilletDSP::Generator {
 
-float Noise::generate() {
-  // uses top 24 bits as they have better randomness
-  const uint32_t intResult = (state1 + state4) >> 8;
-
-  const uint32_t t = state2 << 9;
+double Noise::generate() {
+  const uint64_t x = state1 + state4;
+  const uint64_t result = std::rotl(x, 23) + state1;
+  const uint64_t t = state2 << 17;
 
   state3 ^= state1;
   state4 ^= state2;
   state2 ^= state3;
   state1 ^= state4;
   state3 ^= t;
-  state4 = (state4 << 11) | (state4 >> (32 - 11)); // rotate by 11
+  state4 = std::rotl(state4, 45);
 
-  return static_cast<float>(intResult) / (float)((1 << 23) - 1) - 1.0f;
+  return ((result >> 11) * (2.0 / (1ULL << 53))) - 1.0;
 }
 
 } // MilletDSP::Generator namespace
