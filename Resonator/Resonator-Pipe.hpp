@@ -39,7 +39,7 @@ public:
 	}
 
 private:
-  Other::Convolution convolution;
+	Other::Convolution convolution;
 	Delay::Recursion recur;
 	Delay::Lagrange<3> delay;
 }; // Pipe class
