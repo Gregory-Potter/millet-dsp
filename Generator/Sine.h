@@ -15,7 +15,7 @@ public:
 	
 	double generate();
 	void setFrequency(double frequency);
-	void zeroPhase();
+	void resetPhase();
 	
 private:
 	double sample;

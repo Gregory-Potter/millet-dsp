@@ -24,7 +24,7 @@ void Sawtooth::setFrequency(double frequency) {
 	step_ = 2.0 / (sampleRate_ / frequency);
 }
 
-void Sawtooth::zeroPhase() {
+void Sawtooth::resetPhase() {
 	sample_ = 0;
 }
 

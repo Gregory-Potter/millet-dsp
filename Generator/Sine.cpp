@@ -22,7 +22,7 @@ double Sine::generate() {
 void Sine::setFrequency(double frequency) {
   
 }
-void Sine::zeroPhase() {
+void Sine::resetPhase() {
   
 }
 

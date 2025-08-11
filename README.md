@@ -60,7 +60,7 @@ void execute();
 
 ### [MilletDSP::Filter](./Filter/)
 
-Classes for filtering a signal, like lowpass and highpass IIR filters, or linear phase convolution.
+Classes for filtering a signal, like lowpass and highpass IIR filters.
 
 ```cpp
 float process(float inputSample);
@@ -73,7 +73,7 @@ Classes for creating samples, i.e. audio signal generators like noise, sine wave
 ```cpp
 float generate();
 void setFrequency(); // OPTIONAL
-void zeroPhase(); // OPTIONAL
+void resetPhase(); // OPTIONAL
 ```
 
 ### [MilletDSP::Resonator](./Resonator/)
