@@ -35,11 +35,19 @@ public:
   {}
 
   double excite() {
-    return env.attenuate(noise.generate());
+    return env.attenuate(filter.process(noise.generate()));
   }
 
   void triggerOn(double velocity) {
     env.triggerOn(velocity);
+  }
+
+  double getCutoff() {
+    return filter.getCutoff();
+  }
+
+  void setCutoff(double cutoff) {
+    filter.setCutoff(cutoff);
   }
 
 private:
