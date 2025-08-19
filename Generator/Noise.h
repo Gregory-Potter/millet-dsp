@@ -4,6 +4,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+/*
+ * Based on xoshiro256++ pseudorandom number generator.
+ * https://en.m.wikipedia.org/wiki/Xorshift#xoshiro
+ * generate() outputs random float values from -1 to 1.
+ */
+
 #pragma once
 
 #include <cstdint>
