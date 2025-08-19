@@ -10,10 +10,9 @@ A C++ library for digital signal processing — intended for handling audio proc
 
 ## Repository Organization
 
-This library largely takes a class-per-file approach.
 The main `MilletDSP` namespace is divided into several other namespaces,
-which each have their own sub-directory. The library does not actually implement interfaces,
-but I have provided some interface-like quick-references below.
+which each have their own sub-directory. The library does not actually implement interfaces for these divisions,
+but there are some interface-like quick-references for them below.
 
 ### [MilletDSP::Data](./Data/)
 

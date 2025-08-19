@@ -7,40 +7,20 @@
 #pragma once
 
 #include <functional>
-#include <cmath>
 #include "../Data/Buffer.h"
 
 namespace MilletDSP::Executor {
 
 class Threshold {
 public:
+  Threshold() = delete;
   Threshold(
     uint sampleRate,
     std::function<double()> func
-  )
-  : buffer_(Data::Buffer(sampleRate / 100)) // 10ms length
-  , writeLoc_(0uz)
-  , isActive_(false)
-  , func_(func)
-  {}
+  );
 
-  double handle() {
-    if (isActive_) {
-      double outputSample = func_();
-      buffer_[writeLoc_] = outputSample;
-      writeLoc_ = ++writeLoc_ % buffer_.size();
-      if (buffer_.rms() < 0.001f) {
-        buffer_.fill(0.01f);
-        isActive_ = false;
-      }
-      return outputSample;
-    }
-    return 0.0f;
-  }
-
-  void execute() {
-    isActive_ = true;
-  }
+  double handle();
+  void execute();
 
 private:
   Data::Buffer buffer_;

@@ -14,41 +14,18 @@ namespace MilletDSP::Exciter {
 
 class NoisePulse {
 public:
+  NoisePulse() = delete;
   NoisePulse(
     double sampleRate,
     double attackLength,
     double releaseLength,
     double cutoffFreq
-  )
-  : noise()
-  , env(
-      sampleRate,
-      Envelope::Transition::Attack::INTERP::LIN,
-      attackLength,
-      Envelope::Transition::Release::INTERP::LIN,
-      releaseLength
-    )
-  , filter(
-      sampleRate,
-      cutoffFreq
-    )
-  {}
+  );
 
-  double excite() {
-    return env.attenuate(filter.process(noise.generate()));
-  }
-
-  void triggerOn(double velocity) {
-    env.triggerOn(velocity);
-  }
-
-  double getCutoff() {
-    return filter.getCutoff();
-  }
-
-  void setCutoff(double cutoff) {
-    filter.setCutoff(cutoff);
-  }
+  double excite();
+  void triggerOn(double velocity);
+  double getCutoff();
+  void setCutoff(double cutoff);
 
 private:
   Generator::Noise noise;

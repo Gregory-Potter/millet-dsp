@@ -12,27 +12,15 @@ namespace MilletDSP::Executor {
 
 class Timer {
 public:
+  Timer() = delete;
 	Timer(
 		double sampleRate,
 		double seconds,
 		std::function<double()> func
-	)
-	: length_(sampleRate * seconds)
-	, counter_(0)
-	, func_(func)
-	{}
+	);
 
-	double handle() {
-		if (counter_ == length_) {
-			return 0.0f;
-		}
-		counter_++;
-		return func_();
-	}
-
-	void execute() {
-		counter_ = 0;
-	}
+	double handle();
+	void execute();
 	
 private:
 	std::function<double()> func_;
